@@ -39,7 +39,7 @@ def main():
         except ValueError:
             print("Invalid input! Please enter in the correct format")
 
-    print("\nEnter the second array (latitude, longitude): ")
+    print("\nEnter the second array (format: latitude,longitude): ")
     print("Type 'done' when you are finished.")
     arr2 = []
     while True:
