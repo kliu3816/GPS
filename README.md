@@ -15,7 +15,7 @@ Enter point: 37.7749,-122.4194
 Enter point: 34.0522,-118.2437  
 Enter point: done  
 
-Enter the second array (latitude, longitude):  
+Enter the second array (format: latitude,longitude):  
 Enter point: 36.7783,-119.4179  
 Enter point: 40.7128,-74.0060  
 Enter point: done  
