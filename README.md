@@ -10,16 +10,16 @@ Made with Python
 
 # Example Input/Output:
 # input:
-Enter the first array (format: latitude,longitude): 
-Enter point: 37.7749,-122.4194
-Enter point: 34.0522,-118.2437
-Enter point: done
+Enter the first array (format: latitude,longitude):  
+Enter point: 37.7749,-122.4194  
+Enter point: 34.0522,-118.2437  
+Enter point: done  
 
-Enter the second array (latitude, longitude): 
-Enter point: 36.7783,-119.4179
-Enter point: 40.7128,-74.0060
-Enter point: done
+Enter the second array (latitude, longitude):  
+Enter point: 36.7783,-119.4179  
+Enter point: 40.7128,-74.0060  
+Enter point: done  
 
 # output:
-(37.7749, -122.4194) in Array 1 is closest to (36.7783, -119.4179) in Array 2.
-(34.0522, -118.2437) in Array 1 is closest to (36.7783, -119.4179) in Array 2.
+(37.7749, -122.4194) in Array 1 is closest to (36.7783, -119.4179) in Array 2.  
+(34.0522, -118.2437) in Array 1 is closest to (36.7783, -119.4179) in Array 2.  
