@@ -8,18 +8,27 @@ def distance(lat1, long1, lat2, long2):
     lat2 = lat2 / (180/pi)
     long2 = long2 / (180/pi)
     d = 3963.0 * acos((sin(lat1) * sin(lat2)) + cos(lat1) * cos(lat2) * cos(long2 - long1))
-    return d
+    return d * 1.609344 #convert to km
 
 #adds the distances to a hashtable and determine the closest coords
 def disarr(arr1, arr2): 
     disdict = {}
+    arr2 = sorted(arr2, key=lambda point: point[0])
+
     for x in arr1:
         distances = []
+        min_dist = float('inf')
+        closest = None
+
         for y in arr2:
+            if abs(y[0] - x[0]) > min_dist/111:
+                break
+
             dis = distance(x[0], x[1], y[0], y[1])
-            distances.append(dis)
-        minindex = distances.index(min(distances))
-        disdict[tuple(x)] = arr2[minindex]
+            if dis < min_dist:
+                min_dist = dis
+                closest = y
+        disdict[tuple(x)] = tuple(closest)
     return disdict
 
 def readfile(filename, latcol, longcol):
@@ -75,17 +84,17 @@ def main():
     print("This program matches locations in the first array to their closest location in the second array.\n")
     print("For the first array, ")
     arr1 = ask_coords()
+    if not arr1:
+        print("Array 1 must contain at least one point!")
+        return
     print("For the second array, ")
     arr2 = ask_coords()
-
-
-    # Check if inputs are valid
-    if not arr1 or not arr2:
-        print("Both arrays must contain at least one point!")
+    if not arr2:
+        print("Array 2 must contain at least one point!")
         return
 
-    #Compute the closest matches
 
+    #Compute the closest matches
     result = disarr(arr1, arr2)
     for key, value in result.items():
         print(f"{key} in Array 1 is closest to {value} in Array 2.")
