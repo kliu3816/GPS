@@ -1,3 +1,4 @@
+import csv
 from math import cos, sin, pi, acos #import math functions
 
 #calcuates the distance from one coord to another
@@ -20,37 +21,58 @@ def disarr(arr1, arr2):
         minindex = distances.index(min(distances))
         disdict[tuple(x)] = arr2[minindex]
     return disdict
-            
+
+def readfile(filename, latcol=None, longcol=None):
+    arr = [] 
+    try:
+        with open(filename, mode = 'r') as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            lat_index= header.index(latcol)
+            long_index = header.index(longcol)
+            for row in reader:
+                latitude = float(row[lat_index])
+                longitude = float(row[long_index])
+                arr.append((latitude, longitude))
+        return arr
+    except Exception:
+        print(f"Error reading file: {Exception}")
+        return []
+    
+def ask_coords():
+    choice = input("do you want to submit a csv file? (y/n)").strip().lower()
+    if choice == "y":
+        file = input("Enter csv filename: ").strip()
+        lat = input("Enter the columon name of the Latitude:").strip()
+        long = input("Enter the columon name of the Longitude:").strip()
+        return readfile(file, lat, long)
+    
+    elif choice == "n":
+        print("Enter the array (format: latitude,longitude): ")
+        print("Type 'done' when you are finished.")
+        arr = []
+        while True:
+            user_input = input("Enter point: ").strip()
+            if user_input.lower() == 'done':
+             break
+            try:
+                lat, long = map(float, user_input.split(","))
+                arr.append((lat, long))
+            except ValueError:
+                print("Invalid input! Please enter in the correct format")
+        return arr
+    else:
+        print("Invalid choice!")
+        return []
 
 def main():
     # arr1 = [(37.7749, -122.4194), (34.0522, -118.2437)]  # Example: San Francisco, Los Angeles
     # arr2 = [(36.7783, -119.4179), (40.7128, -74.0060)]   # Example: California, New York
-    print("This program matches locations in the first array to their closest locations in the second array.\n")
-    print("Enter the first array (format: latitude,longitude): ")
-    print("Type 'done' when you are finished.")
-    arr1 = []
-    while True:
-        user_input = input("Enter point: ").strip()
-        if user_input.lower() == 'done':
-            break
-        try:
-            lat, long = map(float, user_input.split(","))
-            arr1.append((lat, long))
-        except ValueError:
-            print("Invalid input! Please enter in the correct format")
-
-    print("\nEnter the second array (format: latitude,longitude): ")
-    print("Type 'done' when you are finished.")
-    arr2 = []
-    while True:
-        user_input = input("Enter point: ").strip()
-        if user_input.lower() == 'done':
-            break
-        try:
-            lat, long = map(float, user_input.split(","))
-            arr2.append((lat, long))
-        except ValueError:
-            print("Invalid input! Please enter in the correct format")
+    print("This program matches locations in the first array to their closest location in the second array.\n")
+    print("For the first array, ")
+    arr1 = ask_coords()
+    print("For the second array, ")
+    arr2 = ask_coords()
 
     # Check if inputs are valid
     if not arr1 or not arr2:
