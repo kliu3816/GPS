@@ -42,14 +42,14 @@ def readfile(filename, latcol=None, longcol=None):
 def ask_coords():
     choice = input("Do you want to submit a csv file? (y/n)").strip().lower()
     if choice == "y":
-        file = input("Enter csv filename: ").strip()
-        lat = input("Enter the columon name of the Latitude:").strip()
-        long = input("Enter the columon name of the Longitude:").strip()
-        return readfile(file, lat, long)
+        # file = input("Enter csv filename: ").strip()
+        # lat = input("Enter the columon name of the Latitude:").strip()
+        # long = input("Enter the columon name of the Longitude:").strip()
+        return readfile("test1arr2.csv", latcol="latitude", longcol="longitude")
     
     elif choice == "n":
         print("Enter the array (format: latitude,longitude): ")
-        print("Type 'done' when you are finished.")
+        print("Type 'done' when you are fyinished.")
         arr = []
         while True:
             user_input = input("Enter point: ").strip()
