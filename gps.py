@@ -22,34 +22,38 @@ def disarr(arr1, arr2):
         disdict[tuple(x)] = arr2[minindex]
     return disdict
 
-def readfile(filename, latcol=None, longcol=None):
+def readfile(filename, latcol, longcol):
     arr = [] 
     try:
-        with open(filename, mode = 'r') as file:
+        with open(filename, mode = 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
             header = next(reader)
             lat_index= header.index(latcol)
             long_index = header.index(longcol)
             for row in reader:
-                latitude = float(row[lat_index])
-                longitude = float(row[long_index])
-                arr.append((latitude, longitude))
-        return arr
+                try:
+                    lat = float(row[lat_index])
+                    long = float(row[long_index])
+                    arr.append((lat, long))
+                except ValueError as e:
+                    continue
     except Exception:
         print(f"Error reading file: {Exception}")
         return []
+    return arr
     
 def ask_coords():
     choice = input("Do you want to submit a csv file? (y/n)").strip().lower()
     if choice == "y":
-        # file = input("Enter csv filename: ").strip()
-        # lat = input("Enter the columon name of the Latitude:").strip()
-        # long = input("Enter the columon name of the Longitude:").strip()
-        return readfile("test1arr2.csv", latcol="latitude", longcol="longitude")
+        file = input("Enter csv filename: ").strip()
+        lat = input("Enter the columon name of the Latitude:").strip()
+        long = input("Enter the columon name of the Longitude:").strip()
+        arr = readfile(file, lat, long)
+        return arr
     
     elif choice == "n":
         print("Enter the array (format: latitude,longitude): ")
-        print("Type 'done' when you are fyinished.")
+        print("Type 'done' when you are finished.")
         arr = []
         while True:
             user_input = input("Enter point: ").strip()
@@ -57,7 +61,7 @@ def ask_coords():
              break
             try:
                 lat, long = map(float, user_input.split(","))
-                arr.append((lat, long))
+                arr.append((lat,long))
             except ValueError:
                 print("Invalid input! Please enter in the correct format")
         return arr
@@ -74,12 +78,13 @@ def main():
     print("For the second array, ")
     arr2 = ask_coords()
 
+
     # Check if inputs are valid
     if not arr1 or not arr2:
         print("Both arrays must contain at least one point!")
         return
 
-    # Compute the closest matches
+    #Compute the closest matches
 
     result = disarr(arr1, arr2)
     for key, value in result.items():
