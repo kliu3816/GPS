@@ -40,7 +40,7 @@ def readfile(filename, latcol=None, longcol=None):
         return []
     
 def ask_coords():
-    choice = input("do you want to submit a csv file? (y/n)").strip().lower()
+    choice = input("Do you want to submit a csv file? (y/n)").strip().lower()
     if choice == "y":
         file = input("Enter csv filename: ").strip()
         lat = input("Enter the columon name of the Latitude:").strip()
