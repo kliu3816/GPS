@@ -78,6 +78,13 @@ def ask_coords():
         print("Invalid choice!")
         return []
 
+# Converts DMS (Degrees, Minutes, Seconds) to Decimal Degrees
+def dms_to_decimal(degrees, minutes, seconds, direction):
+    decimal = float(degrees) + float(minutes)/60 + float(seconds)/(60*60)
+    if direction.upper() in ['S', 'W']:  # South or West, make it negative
+        decimal *= -1
+    return decimal
+
 def main():
     # arr1 = [(37.7749, -122.4194), (34.0522, -118.2437)]  # Example: San Francisco, Los Angeles
     # arr2 = [(36.7783, -119.4179), (40.7128, -74.0060)]   # Example: California, New York
