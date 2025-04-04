@@ -27,4 +27,5 @@ jobs:
           pip install pytest
 
       - name: Run unit tests
-        run: pytest tests/test_gps.py
+        run: PYTHONPATH=. pytest tests/
+
