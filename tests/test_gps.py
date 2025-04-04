@@ -1,6 +1,6 @@
 # tests/test.py
 
-from gps import distance, dms_to_decimal, disarr
+from closest_gpscheck import distance, dms_to_decimal, disarr
 
 def test_distance_sf_to_la():
     # San Francisco to Los Angeles ≈ 559 km
