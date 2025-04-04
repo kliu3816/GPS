@@ -2,6 +2,13 @@
 Assignment 1 for EC530
 Made with Python
 
+You will be prompted to input two sets of coordinates. You can choose to either:
+
+1. Upload a CSV file and specify the column names for latitude and longitude.
+2. Manually enter coordinates in the format `latitude,longitude`.
+
+After inputting both arrays, the program will compute and display the nearest point in the second array for each point in the first.
+
 # Features:
 - Calculate the distance between two coordinates using the Haversine formula.
   Distance = 3963.0 * arccos[(sin(lat1) * sin(lat2)) + cos(lat1) * cos(lat2) * cos(long2-long1)]
