@@ -10,7 +10,7 @@ def test_distance_sf_to_la():
 def test_dms_to_decimal_conversions():
     # North and East should be positive
     assert round(dms_to_decimal(40, 26, 46, 'N'), 4) == 40.4461
-    assert round(dms_to_decimal(79, 58, 56, 'E'), 4) == 79.9822
+    assert round(dms_to_decimal(78, 58, 56, 'E'), 4) == 79.9822
 
     # South and West should be negative
     assert round(dms_to_decimal(40, 26, 46, 'S'), 4) == -40.4461
