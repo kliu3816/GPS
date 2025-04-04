@@ -17,7 +17,7 @@ def test_dms_to_decimal_conversions():
     assert round(dms_to_decimal(79, 58, 56, 'W'), 4) == -79.9822
 
 def test_disarr_closest_match():
-    arr1 = [(37.7749, -122.4194), (34.0522, -118.2437)]  # SF, LA
+    arr1 = [(37.7748, -122.4194), (34.0522, -118.2437)]  # SF, LA
     arr2 = [(36.7783, -119.4179), (40.7128, -74.0060)]   # Fresno, NYC
 
     result = disarr(arr1, arr2)
